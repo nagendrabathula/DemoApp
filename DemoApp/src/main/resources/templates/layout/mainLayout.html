@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">MIS</title>
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport" />
+<link rel="stylesheet"
+	th:href="@{/assets/bootstrap/css/bootstrap.min.css}" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+	th:href="@{https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css}" />
+<link rel="stylesheet"
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
+	th:href="@{https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css}" />
+
+<link rel="stylesheet" href="assets/css/stylesheets.css"
+	th:href="@{/assets/css/stylesheets.css}" />
+
+
+
+
+<link rel="stylesheet" th:href="@{/assets/dist/css/AdminLTE.min.css}" />
+<link rel="stylesheet" th:href="@{/assets/print.css}" />
+<link rel="stylesheet"
+	th:href="@{'/assets/dist/css/select2-bootstrap.css'}" />
+
+<link rel="stylesheet" th:href="@{'/assets/dist/css/select2.css'}" />
+<link rel="stylesheet"
+	th:href="@{'/assets/bootstrap/css/bootstrap-datetimepicker.min.css'}" />
+<link rel="stylesheet"
+	th:href="@{'/assets/bootstrap/css/bootstrap-datetimepicker.css'}" />
+<link rel="stylesheet"
+	th:href="@{'/assets/bootstrap/css/bootstrap-datetimepicker-standalone.css'}" />
+
+<link rel="stylesheet"
+	th:href="@{/assets/dist/css/skins/skin-blue.min.css}" />
+
+<meta name="_csrf" th:content="${_csrf.token}" />
+<!-- default header name is X-CSRF-TOKEN -->
+<meta name="_csrf_header" th:content="${_csrf.headerName}" />
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+	<div class="wrapper">
+
+		<!-- Main Header -->
+		<header class="main-header">
+
+			<!-- Logo -->
+			<a href="#" th:href="@{/home}" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+				<!-- logo for regular state and mobile devices --> <span
+				class="logo-mini"><span class="logo-lg"><img
+						style="float: left; width: 50px; height: 50px; display: block; margin-left: -3px;"
+						th:src="@{'/assets/images/MGB_LOGO2.JPG'}" /></span></span> <!-- logo for regular state and mobile devices -->
+
+				<span class="logo-lg"><img
+					style="float: left; width: 233px; height: 50px; display: block; margin-left: -18px;"
+					th:src="@{'/assets/images/MGB_LOGO1.JPG'}" /></span>
+			</a>
+
+			<!-- Header Navbar -->
+			<nav class="navbar navbar-static-top" role="navigation">
+				<!-- Sidebar toggle button-->
+				<a href="#" class="sidebar-toggle" data-toggle="offcanvas"
+					role="button"> <span class="sr-only">Toggle navigation</span>
+				</a>
+				<!-- Navbar Right Menu -->
+				<div class="navbar-custom-menu">
+					<ul class="nav navbar-nav">
+
+						<!-- User Account Menu -->
+						<li class="dropdown user user-menu">
+							<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle"
+							data-toggle="dropdown"> <!-- The user image in the navbar-->
+								<img th:src="@{/assets/dist/img/user.png}" class="user-image"
+								alt="User Image" /> <!-- hidden-xs hides the username on small devices so only the image appears. -->
+								<span class="hidden-xs" sec:authentication="principal.user.name">User</span>
+						</a>
+							<ul class="dropdown-menu">
+								<!-- The user image in the menu -->
+								<li class="user-header"><img
+									th:src="@{/assets/dist/img/user.png}" class="img-circle"
+									alt="User Image" />
+									<p>
+										<span sec:authentication="principal.user.name">User</span>
+									</p></li>
+
+								<!-- Menu Footer-->
+								<li class="user-footer">
+									<div class="pull-left">
+										<a href="#" th:href="@{/resetpwd}"
+											class="btn btn-default btn-flat">Reset Password</a>
+									</div>
+									<div class="pull-right">
+										<a href="logout" th:href="@{/logout}"
+											class="btn btn-default btn-flat">Sign out</a>
+									</div>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+		<!-- Left side column. contains the logo and sidebar -->
+		<aside class="main-sidebar">
+
+			<!-- sidebar: style can be found in sidebar.less -->
+			<section class="sidebar">
+
+				<!-- Sidebar user panel (optional) -->
+				<div class="user-panel">
+					<div class="pull-left image">
+						<img th:src="@{/assets/dist/img/user.png}" class="img-circle"
+							alt="User Image" />
+					</div>
+					<div class="pull-left info">
+						<p>
+							<span sec:authentication="principal.user.name">User</span>
+						</p>
+						<!-- Status -->
+						<a href="#"><i class="fa fa-circle text-success"></i> Last</a>
+					</div>
+				</div>
+
+				<!-- Sidebar Menu -->
+				<ul class="sidebar-menu">
+					<li ><a href="#"
+						th:href="@{'/home'}"><i class="fa fa-users"></i><span>
+								Users</span></a></li>
+					<!-- <li th:class="${CURRENT_MENU == 'Roles'}? 'active' : ''"
+						sec:authorize="hasRole('ROLE_MANAGE_ROLES')"><a href="#"
+						th:href="@{'/roles'}"><i class="fa fa-user"></i><span>
+								Roles</span></a></li> -->
+
+
+					<!-- <li
+						th:class="${CURRENT_MENU == 'Transaction Managemnet'}? 'active' : ''"
+						class="treeview"><a href="#"><i class="glyphicon glyphicon-list-alt"></i>
+							<span>Transaction Management</span> </a>
+						<ul class="treeview-menu">
+							<li sec:authorize="hasRole('ROLE_MANAGE_PAYMENT_SYSTEMS')"><a
+								th:href="@{'/transactionPage'}"><i class="glyphicon glyphicon-book"></i><span>/transactionPage
+										Search Txns</span></a></li>
+							<li sec:authorize="hasRole('ROLE_MANAGE_PAYMENT_SYSTEMS')"><a
+								th:href="@{'/AgentTxn'}"><i class="fa fa-user"></i><span>
+										Search Agent Txns</span></a></li>
+							<li sec:authorize="hasRole('ROLE_MANAGE_PAYMENT_SYSTEMS')"><a
+								th:href="@{'/bcTxn'}"><i class="glyphicon glyphicon-equalizer"></i><span>
+										Search BC Txns</span></a></li>
+							<li sec:authorize="hasRole('ROLE_MANAGE_PAYMENT_SYSTEMS')"><a
+								th:href="@{'/enrollsearchform'}"><i class="glyphicon glyphicon-scale"></i><span>
+										Search Enrollement Txns</span></a></li>
+						</ul></li> -->
+
+					<!-- <li th:class="${CURRENT_MENU == 'BC Managemnet'}? 'active' : ''"
+						class="treeview" sec:authorize="hasRole('ROLE_MANAGE_BC')"><a
+						href="#"><i class="glyphicon glyphicon-wrench"></i> <span>BC
+								Management</span> </a>
+						<ul class="treeview-menu">
+							<li sec:authorize="hasRole('ROLE_MANAGE_BC')"><a
+								th:href="@{'/bcc'}"><i class="glyphicon glyphicon-plus"></i><span>
+										BC creation</span></a></li>
+							<li sec:authorize="hasRole('ROLE_MANAGE_BC')"><a
+								th:href="@{'/bcList'}"><i class="glyphicon glyphicon-eye-open"></i><span>
+										BC List</span></a></li>
+							<li sec:authorize="hasRole('ROLE_MANAGE_BC')"><a
+								th:href="@{'/NonActivebcList'}"><i class="glyphicon glyphicon-eye-close"></i><span>Non-Active
+										BC List</span></a></li>
+							<li sec:authorize="hasRole('ROLE_MANAGE_BC')"><a
+								th:href="@{'/branchcreation'}"><i class="glyphicon glyphicon-plus-sign"></i><span>New
+										Branch</span></a></li>
+						</ul></li> -->
+					<li ><a href="#"
+						th:href="@{'/updatelimits'}"><i class="glyphicon glyphicon-pencil"></i><span>
+								Transaction Limits</span></a></li>
+
+				</ul>
+				<!-- /.sidebar-menu -->
+			</section>
+			<!-- /.sidebar -->
+		</aside>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<div layout:fragment="pageHeader">
+				<section class="content-header">
+					<h1 th:text="${headerTitle}">Manage Roles</h1>
+					<div th:if="${info}"
+						class="col-md-12 alert alert-info alert-dismissable" id="infot">
+						<button type="button" class="close" data-dismiss="alert"
+							aria-hidden="true">&times;</button>
+						<p>
+							<i class="icon fa fa-info"></i> <span th:text="${info}">Info</span>
+						</p>
+					</div>
+
+					<div th:if="${error}"
+						class="col-md-12 alert alert-danger alert-dismissable">
+						<button type="button" class="close" data-dismiss="alert"
+							aria-hidden="true">&times;</button>
+						<p>
+							<i class="icon fa fa-ban"></i> <span th:text="${error}">Error</span>
+						</p>
+					</div>
+				</section>
+			</div>
+
+			<!-- Main content -->
+			<section class="content">
+				<div layout:fragment="content" th:remove="tag">
+					<!-- Your Page Content Here -->
+				</div>
+
+			</section>
+			<!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+
+		<!-- Main Footer -->
+		<footer class="main-footer">
+			<!-- To the right -->
+			<div class="pull-right hidden-xs">
+				<strong>Version 1.0</strong>
+			</div>
+			<!-- Default to the left -->
+			<strong>Copyright &copy; 2017 <a href="#">Olive Crypto
+					Systems LLP</a>.
+			</strong> All rights reserved.
+		</footer>
+	</div>
+	<!-- ./wrapper -->
+
+	<!-- REQUIRED JS SCRIPTS -->
+
+	<script th:src="@{'/assets/plugins/jQuery/jQuery-2.1.4.min.js'}"></script>
+	<script th:src="@{'/assets/dist/js/jquery-1.12.0.min.js'}"></script>
+	<script th:src="@{'/assets/dist/js/jquery-1.12.3.js'}"></script>
+	<script th:src="@{'/assets/dist/js/jquery.dataTables.min.js'}"></script>
+	<script th:src="@{'/assets/dist/js/fnReloadAjax.js'}"></script>
+	<script th:src="@{'/assets/dist/js/select2.js'}"></script>
+	<script th:src="@{'/assets/bootstrap/js/moment-with-locales.js'}"></script>
+	<script
+		th:src="@{'/assets/bootstrap/js/bootstrap-datetimepicker.min.js'}"></script>
+	<script th:src="@{'/assets/bootstrap/js/bootstrap.min.js'}"></script>
+	<script th:src="@{'/assets/plugins/knob/jquery.knob.js'}"></script>
+	<script th:src="@{'/assets/dist/js/dataTables.bootstrap.min.js'}"></script>
+	<script th:src="@{'/assets/dist/js/oliveDatatable.js'}"></script>
+	<script th:src="@{'/assets/dist/js/jquery.spring-friendly.js'}"></script>
+	<script th:src="@{'/assets/dist/js/bootbox.min.js'}"></script>
+	<script th:src="@{'/assets/dist/js/app.min.js'}"></script>
+	<script th:src="@{'/assets/dist/js/Verhoeff.js'}"></script>
+	<!-- <script th:src="@{'/assets/waiting.js'}"></script> 
+    <script th:src="@{'/assets/olive.js'}"></script> -->
+
+	<!-- InputMask -->
+	<script th:src="@{'/assets/plugins/jquery-mask-min.js'}"></script>
+
+	<div layout:fragment="scripts" th:remove="tag"></div>
+
+</body>
+</html>

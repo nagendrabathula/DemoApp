@@ -1,0 +1,8 @@
+/**
+  * DATATABLES
+ */
+$(document).ready(function() {
+	
+    
+}); 
+	   
